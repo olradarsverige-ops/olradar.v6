@@ -1,0 +1,1 @@
+export const BEER_STYLES=["Lager","Pilsner","IPA","DIPA","Session IPA","APA","Pale Ale","NEIPA","Stout","Porter","Brown Ale","Red Ale","Amber Ale","Wheat","Hefeweizen","Belgian Blonde","Tripel","Saison","Sour","Gose","Kölsch","Märzen","Dunkel","Cider","Alkoholfri"];

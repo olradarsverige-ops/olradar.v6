@@ -1,0 +1,1 @@
+export const themeA={background:"#1F1A17",surface:"#231d19",accent:"#C08B4D",textPrimary:"#F1E5CF",textSecondary:"#CFB68E",chipBg:"rgba(192,139,77,0.12)",btnBg:"#36271f",btnHover:"#443227",btnText:"#F1E5CF",outline:"rgba(255,255,255,0.08)",shadow:"0 12px 28px rgba(0,0,0,0.35)"};

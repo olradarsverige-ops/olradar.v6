@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root{color-scheme:dark}
+body{@apply text-white; background: radial-gradient(1200px 600px at 20% 0%, #0f1419 0%, #0c1014 60%, #0a0d10 100%);}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px}
+.input{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 12px;width:100%;color:#fff}
+.label{opacity:.9;margin-bottom:6px;display:block}
+.select{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 12px;width:100%;color:#fff}
+.btn{border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer}
+.btn-amber{background:#DAAC55;color:#111418;border:none}
+.btn-amber:hover{background:#BF8B35}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:6px 10px;font-size:12px}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(6px)}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#121316;border:1px solid rgba(255,255,255,.1);border-radius:14px;max-width:520px;width:92%;padding:18px}

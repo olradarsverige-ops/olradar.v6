@@ -1,0 +1,1 @@
+export default function Home(){return(<main style={{minHeight:"60vh",display:"grid",placeItems:"center"}}><p style={{opacity:.6}}>Laddar rätt variant…</p></main>);}
