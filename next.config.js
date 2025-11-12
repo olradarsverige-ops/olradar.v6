@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: { typedRoutes: true },
-  i18n: {
-    locales: ["sv", "en"],
-    defaultLocale: "sv",
+  reactStrictMode: true,
+  experimental: {
+    typedRoutes: true,
   },
+  // Removed i18n to avoid export mismatch with /[lang]
+  output: 'standalone',
 };
 
 module.exports = nextConfig;

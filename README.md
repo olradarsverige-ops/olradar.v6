@@ -1,13 +1,17 @@
-# olradar-v6 root fix patch
+# olradar-v6 export fix patch
 
-This patch adds:
-1) `app/page.tsx` — redirects `/` to `/sv` so the root route no longer 404s.
-2) `app/[lang]/page.tsx` — includes `generateStaticParams()` for `sv/en`. A minimal page implementation is provided. If you already have a richer `[lang]/page.tsx`, keep your UI and copy **only** the `generateStaticParams` export into it.
-3) `next.config.js` — optional i18n hint (sv/en). Safe with the current route setup.
+Fixes `Error: The provided export path '/' doesn't match the '/[lang]' page` on Vercel.
 
-## How to apply
-- Drop these files into your repo preserving paths.
-- Commit & deploy to Vercel.
-- Test: `/` should redirect to `/sv`. `/en` also renders.
+### Included changes:
+1. **next.config.js** — removes `i18n` and sets `output: 'standalone'`.
+2. **app/page.tsx** — redirects `/` → `/sv` (root redirect only).
+3. **app/[lang]/page.tsx** — no redirect, uses `generateStaticParams()` for `sv` and `en` to allow clean static export.
 
-If you use a different default language, change `/sv` inside `app/page.tsx`.
+### Apply
+- Unzip into repo root, preserving paths.
+- Commit and deploy on Vercel.
+
+### Verify
+- `/` redirects to `/sv`
+- `/sv` renders correctly
+- `/en` renders correctly
