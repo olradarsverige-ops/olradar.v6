@@ -1,1 +1,7 @@
-export default function Home(){return(<main style={{minHeight:"60vh",display:"grid",placeItems:"center"}}><p style={{opacity:.6}}>Laddar rätt variant…</p></main>);}
+// app/page.tsx
+// Server Component: Redirect root to default language
+import { redirect } from "next/navigation";
+
+export default function RootRedirect() {
+  redirect("/sv");
+}
