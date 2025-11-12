@@ -1,11 +1,32 @@
-import { NextResponse, NextRequest } from "next/server";
-const COOKIE="olr_ab"; const A_URL="/variant-a"; const B_URL="/variant-b";
-export function middleware(req: NextRequest){
-  const { pathname } = req.nextUrl; const isRoot = pathname === "/"; const isVariant = pathname === "/variant-a" || pathname === "/variant-b";
-  if (!isRoot && !isVariant) return NextResponse.next();
-  const cookie = req.cookies.get(COOKIE)?.value as "a"|"b"|undefined;
-  if (!cookie){ const pick = Math.random() < .5 ? "a" : "b"; const res = NextResponse.redirect(new URL(pick==="a"?A_URL:B_URL, req.url)); res.cookies.set(COOKIE, pick, { path:"/", httpOnly:false, sameSite:"lax", maxAge: 60*60*24*30 }); return res; }
-  if (isRoot){ const target = cookie==="a"?A_URL:B_URL; return NextResponse.redirect(new URL(target, req.url)); }
-  return NextResponse.next();
+// middleware.ts
+import { NextResponse, type NextRequest } from "next/server";
+
+export const config = {
+  // Kör endast på startsidorna (justera vid behov)
+  matcher: ["/", "/sv", "/en"],
+};
+
+export default function middleware(req: NextRequest) {
+  try {
+    // Läs ev. A/B-cookie
+    const current = req.cookies.get("ab-variant")?.value;
+
+    // Sätt variant om den saknas (helt lokalt, ingen IO)
+    if (current !== "A" && current !== "B") {
+      const variant = Math.random() < 0.5 ? "A" : "B";
+      const res = NextResponse.next();
+      res.cookies.set("ab-variant", variant, {
+        path: "/",
+        maxAge: 60 * 60 * 24 * 30, // 30 dagar
+        sameSite: "lax",
+      });
+      return res;
+    }
+
+    // Annars: bara gå vidare
+    return NextResponse.next();
+  } catch {
+    // Även vid fel: släpp vidare (krascha inte sidan)
+    return NextResponse.next();
+  }
 }
-export const config = { matcher: ["/","/variant-a","/variant-b"] };
